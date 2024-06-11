@@ -15,10 +15,10 @@ $sql = "INSERT INTO `work` (imie, nazwisko, przyjazd, odjazd, adres, zaklad, spo
 $result = mysqli_query($conn, $sql);
 
 if ($result) {
-    echo "Data inserted successfully.";
+    echo json_encode(["message" => "Data inserted successfully."]);
 } else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}s
+    echo json_encode(["error" => "Error: " . $sql . "<br>" . mysqli_error($conn)]);
+}
 ?>
 
 

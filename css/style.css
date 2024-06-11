@@ -34,7 +34,7 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
 }
 button:hover {
     background-color: #0056b3;
@@ -50,16 +50,24 @@ button:hover {
     border-collapse: collapse;
     table-layout: fixed; /* Фиксированная ширина столбцов */
 }
+
+.worker-table thead {
+    background-color: #9e8beb;
+
+}
+
 .worker-table th, .worker-table td {
     border: 1px solid #ddd;
-    padding: 12px;
-    text-align: left;
-    font-size: 14px;
+    padding: 0px;
+    text-align: center;
+    font-size: 12px;
     word-wrap: break-word; /* Перенос слов */
 }
 .worker-table th {
     background-color: #9e8beb;
     color: #fff;
+    padding: 2px;
+    font-size: 14px;
 }
 .worker-table tr:nth-child(even) {
     background-color: #f2f2f2;
@@ -68,13 +76,20 @@ button:hover {
     background-color: #e5f2ff;
 }
 .worker-table .delete-btn {
-    padding: 8px 12px;
+    padding: 4px 6px;
     background-color: #dc3545;
     color: white;
     border: none;
     cursor: pointer;
     border-radius: 5px;
+    margin: 0 auto;
 }
+
+.edit-btn {
+    padding: 4px 6px;
+    margin: 4px auto;
+}
+
 .worker-table .delete-btn:hover {
     background-color: #c82333;
 }
@@ -102,6 +117,14 @@ button:hover {
     display: none;
 }
 
+/* width/height butto EDIT */
+button {
+    padding: 8px 12px;
+}
 
-
+/* Устанавливаем ширину колонки с кнопкой EDIT */
+.table__action {
+    width: 80px;
+    vertical-align: middle;
+}
 

@@ -89,4 +89,125 @@ document.addEventListener("DOMContentLoaded", function() {
 
         saveAs(new Blob([s2ab(wbout)], {type: "application/octet-stream"}), "table.xlsx");
     });
+
+
+    // Назначаем обработчики события "click" для кнопок редактирования
+/*     document.querySelectorAll(".edit-btn").forEach(function(button) {
+        button.addEventListener("click", function() {
+            var id = this.getAttribute("data-id"); // Получаем ID записи для редактирования
+    
+            // Получаем данные записи по ее ID и заполняем форму редактирования
+            fetch('data.php?id=' + id)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                // Установим значения полей формы на основе данных, полученных с сервера
+                document.getElementById("editId").value = id;
+                document.getElementById("editImie").value = data.imie || '';
+                document.getElementById("editNazwisko").value = data.nazwisko || '';
+                document.getElementById("editPrzyjazd").value = data.przyjazd || '';
+                document.getElementById("editOdjazd").value = data.odjazd || '';
+                document.getElementById("editAdres").value = data.adres || '';
+                document.getElementById("editZaklad").value = data.zaklad || '';
+                document.getElementById("editSpolka").value = data.spolka || '';
+                document.getElementById("editAdministrator").value = data.administrator || '';
+    
+                // Отображаем форму редактирования
+                document.getElementById("editForm").style.display = "block";
+            })
+            .catch(error => {
+                console.error('Ошибка:', error.message);
+                if (error.hasOwnProperty('responseText')) {
+                    console.error('Текст ответа сервера:', error.responseText);
+                } else {
+                    console.error('Не удалось получить ответ от сервера.');
+                }
+            });
+        });
+    }); */
+    
+    document.querySelectorAll(".edit-btn").forEach(function(button) {
+        button.addEventListener("click", function() {
+            var id = this.getAttribute("data-id"); // Получаем ID записи для редактирования
+    
+            // Получаем данные записи по ее ID и заполняем форму редактирования
+            fetch('data.php?id=' + id)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data); // Посмотрим, что приходит с сервера
+                // Установим значения полей формы на основе данных, полученных с сервера
+                document.getElementById("editId").value = id;
+                document.getElementById("editImie").value = data.imie || '';
+                document.getElementById("editNazwisko").value = data.nazwisko || '';
+                document.getElementById("editPrzyjazd").value = data.przyjazd || '';
+                document.getElementById("editOdjazd").value = data.odjazd || '';
+                document.getElementById("editAdres").value = data.adres || '';
+                document.getElementById("editZaklad").value = data.zaklad || '';
+                document.getElementById("editSpolka").value = data.spolka || '';
+                document.getElementById("editAdministrator").value = data.administrator || '';
+    
+                // Отображаем форму редактирования
+                document.getElementById("editForm").style.display = "block";
+            })
+            .catch(error => {
+                console.error('Ошибка:', error.message);
+                if (error.hasOwnProperty('responseText')) {
+                    console.error('Текст ответа сервера:', error.responseText);
+                } else {
+                    console.error('Не удалось получить ответ от сервера.');
+                }
+            });
+        });
+    });
+
+    // Назначаем обработчик события "submit" для формы редактирования
+    document.getElementById("editDataForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Предотвращаем стандартную отправку формы
+        var formData = new FormData(this);
+    
+        fetch('edit.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); // Ожидаем JSON-ответ от сервера
+        })
+        .then(data => {
+            console.log(data);
+            if (data.hasOwnProperty("imie")) { // Проверяем наличие поля "imie" в ответе
+                // Устанавливаем значения для полей формы
+                document.getElementById("editId").value = data.id;
+                document.getElementById("editImie").value = data.imie;
+                document.getElementById("editNazwisko").value = data.nazwisko;
+                document.getElementById("editPrzyjazd").value = data.przyjazd;
+                document.getElementById("editOdjazd").value = data.odjazd;
+                document.getElementById("editAdres").value = data.adres;
+                document.getElementById("editZaklad").value = data.zaklad;
+                document.getElementById("editSpolka").value = data.spolka;
+                document.getElementById("editAdministrator").value = data.administrator;
+        
+                // Отображаем форму редактирования
+                document.getElementById("editForm").style.display = "block";
+            } else if (data.hasOwnProperty("error")) { // Проверяем наличие ошибки в ответе
+                alert("Error: " + data.error);
+            } else {
+                throw new Error('Unexpected server response'); // Если ответ не содержит ни сообщения, ни ошибки, генерируем исключение
+            }
+        })
+        .catch(error => console.error('Ошибка:', error));
+    });
+            
 });

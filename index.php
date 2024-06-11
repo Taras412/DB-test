@@ -56,7 +56,8 @@
                         <th>Zakład</th>
                         <th>Spółka</th>
                         <th>Administrator</th>
-                        <th>Action</th>
+                        <th class="table__action">Action</th>
+                        <th class="table__action">Action</th>
                     </tr>
                     <tr>
                         <th><input type="text" class="filter-input" data-column="0"></th>
@@ -90,6 +91,7 @@
                                 echo "<td>".$row['spolka']."</td>";
                                 echo "<td>".$row['administrator']."</td>";
                                 echo "<td><button class='delete-btn' data-id='".$row['id']."'>DELETE</button></td>";
+                                echo "<td><button class='edit-btn' data-id='".$row['id']."'>EDIT</button></td>";
                                 echo "</tr>";
                             }
                         } else {
@@ -160,9 +162,12 @@
             </table>
         </div>  
     </div>
+
+
     <div class="container">
         <button id="exportButton">SAVE TO EXCEL</button>
     </div>
+
 
     <div class="container">
         <div id="modal" class="modal">
@@ -180,7 +185,41 @@
             </div>
         </div>
     </div>
-    
+
+        <!-- Форма редактирования -->
+    <div class="container">
+        <div id="editForm" class="edit-form" style="display: none;">
+            <h2>Редактировать запись</h2>
+            <form id="editDataForm" class="form" action="edit.php" method="POST">
+                <input type="hidden" id="editId" name="id">
+                <input class="form__text" type="text" placeholder="imię" name="imie" id="editImie">
+                <input class="form__text" type="text" placeholder="nazwisko" name="nazwisko" id="editNazwisko">
+                <div>
+                    <input class="form__data" type="date" placeholder="przyjazd" name="przyjazd" id="editPrzyjazd">
+                    <input class="form__data" type="date" placeholder="odjazd" name="odjazd" id="editOdjazd">
+                </div>
+                <input class="form__text" type="text" placeholder="adres" name="adres" id="editAdres">
+                <br>
+                <input class="form__text" type="text" placeholder="zaklad" name="zaklad" id="editZaklad">
+                <br>
+                <select class="form__text" name="spolka" id="editSpolka">
+                    <option value="APT">APT</option>
+                    <option value="WP">WP</option>
+                    <option value="SAS">SAS</option>
+                    <option value="WD">WD</option>
+                    <option value="DIPICO">DIPICO</option>
+                </select>
+                <br>
+                <input class="form__text" type="text" placeholder="administrator" name="administrator" id="editAdministrator">
+                <br>
+                <div>
+                    <button type="submit">Сохранить</button>
+                    <button id="cancelEdit">Отмена</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>
