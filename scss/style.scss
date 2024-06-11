@@ -1,0 +1,105 @@
+
+.container {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.wrapper {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.form__text, .form__data {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form__data {
+    width: 140px;
+}
+
+button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.worker-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.worker-table th, .worker-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.worker-table th {
+    background-color: #0ce4d6;
+    color: #fff;
+}
+
+.worker-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.worker-table tr:hover {
+    background-color: #e5f2ff;
+}
+
+.worker-table .delete-btn {
+    padding: 8px 12px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.worker-table .delete-btn:hover {
+    background-color: #c82333;
+}
+
+.table-container {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-top: 20px;
+}
+
+#table1 {
+    display: block;
+}
+
+#table2 {
+    display: none;
+}
+
+#tableSelector option {
+    font-size: 16px;
+    font-weight: 700;
+}

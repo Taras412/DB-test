@@ -1,0 +1,103 @@
+/* Общие стили */
+.container {
+    margin: 0 auto;
+    width: 90%;
+}
+.wrapper {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.form__text, .form__data {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.form__data {
+    width: 140px;
+}
+button {
+    padding: 20px 40px;
+    margin-top: 10px;
+    background-color: #9e8beb;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Стили таблиц */
+.table-container {
+    margin-top: 10px;
+    border: 2px solid #000;
+}
+.worker-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Фиксированная ширина столбцов */
+}
+.worker-table th, .worker-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+    font-size: 14px;
+    word-wrap: break-word; /* Перенос слов */
+}
+.worker-table th {
+    background-color: #9e8beb;
+    color: #fff;
+}
+.worker-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.worker-table tr:hover {
+    background-color: #e5f2ff;
+}
+.worker-table .delete-btn {
+    padding: 8px 12px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.worker-table .delete-btn:hover {
+    background-color: #c82333;
+}
+.table-container {
+    max-height: 100vh;
+    overflow-y: auto;
+}
+#table1 {
+    display: block;
+}
+#table2 {
+    display: none;
+}
+#tableSelector {
+    font-size: 18px;
+    font-weight: 700;
+    padding-bottom: 10px;
+}
+
+.filter-input {
+    width: calc(100% - 20px); /* Ширина поля ввода = 100% минус внутренние отступы */
+}
+
+
+
+
