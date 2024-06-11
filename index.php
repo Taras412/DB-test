@@ -20,7 +20,7 @@
                 <br>
                 <input class="form__text" type="text" placeholder="zaklad" name="zaklad">
                 <br>
-                <select class="form__text" name="spolka"> <!-- Заменили input на select -->
+                <select class="form__text" name="spolka">
                     <option value="APT">APT</option>
                     <option value="WP">WP</option>
                     <option value="SAS">SAS</option>
@@ -54,7 +54,7 @@
                         <th>Odjazd</th>
                         <th>Adres</th>
                         <th>Zakład</th>
-                        <th>Spółка</th>
+                        <th>Spółka</th>
                         <th>Administrator</th>
                         <th>Action</th>
                     </tr>
@@ -114,7 +114,7 @@
                         <th>Odjazd</th>
                         <th>Adres</th>
                         <th>Zakład</th>
-                        <th>Spółка</th>
+                        <th>Spółka</th>
                         <th>Administrator</th>
                     </tr>
                     <tr>
@@ -175,7 +175,7 @@
                 <p><strong>Odjazd:</strong> <span id="modal-odjazd"></span></p>
                 <p><strong>Adres:</strong> <span id="modal-adres"></span></p>
                 <p><strong>Zakład:</strong> <span id="modal-zaklad"></span></p>
-                <p><strong>Spółka:</strong> <span id="modal-spolka"></span></p>
+                <p><strong>Spółка:</strong> <span id="modal-spolka"></span></p>
                 <p><strong>Administrator:</strong> <span id="modal-administrator"></span></p>
             </div>
         </div>

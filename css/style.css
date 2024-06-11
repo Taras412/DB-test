@@ -98,6 +98,10 @@ button:hover {
     width: calc(100% - 20px); /* Ширина поля ввода = 100% минус внутренние отступы */
 }
 
+.modal {
+    display: none;
+}
+
 
 
 
