@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $imie = isset($_POST['imie']) ? $_POST['imie'] : '';
     $nazwisko = isset($_POST['nazwisko']) ? $_POST['nazwisko'] : '';
     $przyjazd = isset($_POST['przyjazd']) ? $_POST['przyjazd'] : '';
-    $odjazd = isset($_POST['odjazd']) ? $_POST['odjazd'] : '';
+    $odjazd = isset($_POST['odjazd']) ? $_POST['odjazd'] : null;
     $adres = isset($_POST['adres']) ? $_POST['adres'] : '';
     $zaklad = isset($_POST['zaklad']) ? $_POST['zaklad'] : '';
     $spolka = isset($_POST['spolka']) ? $_POST['spolka'] : '';
@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 imie = '$imie', 
                 nazwisko = '$nazwisko', 
                 przyjazd = '$przyjazd', 
-                odjazd = '$odjazd', 
+                odjazd = " . ($odjazd ? "'$odjazd'" : "NULL") . ",
                 adres = '$adres', 
                 zaklad = '$zaklad', 
                 spolka = '$spolka', 

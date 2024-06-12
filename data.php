@@ -10,7 +10,7 @@ $zaklad = $_POST['zaklad'];
 $spolka = $_POST['spolka'];
 $administrator = $_POST['administrator'];
 
-$sql = "INSERT INTO `work` (imie, nazwisko, przyjazd, odjazd, adres, zaklad, spolka, administrator) VALUES ('$imie','$nazwisko','$przyjazd','$odjazd','$adres','$zaklad','$spolka','$administrator')";
+$sql = "INSERT INTO `work` (imie, nazwisko, przyjazd, adres, zaklad, spolka, administrator) VALUES ('$imie','$nazwisko','$przyjazd','$adres','$zaklad','$spolka','$administrator')";
 
 $result = mysqli_query($conn, $sql);
 

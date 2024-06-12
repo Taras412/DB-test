@@ -36,16 +36,28 @@ document.addEventListener("DOMContentLoaded", function() {
             fetch('delete.php?id=' + id + '&from=work', {
                 method: 'DELETE'
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text(); // Извлекаем текст ответа
+            })
             .then(data => {
-                if (data.message) {
+                alert(data); // Показываем текст ответа (сообщение сервера) в уведомлении
+                if (data.includes("Ошибка")) {
+                    throw new Error(data); // Если текст ответа содержит "Ошибка", выбрасываем ошибку
+                } else {
                     var row = document.getElementById('row-' + id);
                     row.remove(); // Удаляем строку с удаленной записью
-                } else {
-                    alert("Ошибка: " + data.error);
                 }
             })
-            .catch(error => console.error('Ошибка:', error));
+            .catch(error => {
+                console.error('Ошибка:', error.message); // Выводим сообщение об ошибке
+                alert('Ошибка при удалении записи. Пожалуйста, попробуйте еще раз.');
+            })
+            .finally(() => {
+                window.location.reload(); // Перезагружаем страницу в любом случае
+            });
         });
     });
 

@@ -13,7 +13,7 @@
                 <input class="form__text" type="text" placeholder="imię" name="imie">
                 <input class="form__text" type="text" placeholder="nazwisko" name="nazwisko">
                 <div>
-                    <input class="form__data" type="date" placeholder="przyjazd" name="przyjazd">
+                    <input class="form__data" type="date" placeholder="przyjazd" name="przyjazd" required>
                     <input class="form__data" type="date" placeholder="odjazd" name="odjazd">
                 </div>
                 <input class="form__text" type="text" placeholder="adres" name="adres">
