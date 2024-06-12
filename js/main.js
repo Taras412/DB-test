@@ -1,5 +1,3 @@
-console.log("Script loaded");
-
 document.addEventListener("DOMContentLoaded", function() {
     // Назначаем обработчик событий для селектора таблиц
     document.getElementById("tableSelector").addEventListener("change", function() {
@@ -20,13 +18,12 @@ document.addEventListener("DOMContentLoaded", function() {
             method: 'POST',
             body: formData
         })
-        .then(response => response.text())
+        .then(response => response.json())
         .then(data => {
-            console.log(data);
-            if (data.includes("Data inserted successfully.")) {
+            if (data.message) {
                 window.location.reload(); // Перезагружаем страницу после успешной вставки
             } else {
-                alert("Error: " + data);
+                alert("Error: " + data.error);
             }
         })
         .catch(error => console.error('Error:', error));
@@ -39,13 +36,13 @@ document.addEventListener("DOMContentLoaded", function() {
             fetch('delete.php?id=' + id + '&from=work', {
                 method: 'DELETE'
             })
-            .then(response => response.text())
+            .then(response => response.json())
             .then(data => {
-                if (data.includes("успешно")) {
+                if (data.message) {
                     var row = document.getElementById('row-' + id);
                     row.remove(); // Удаляем строку с удаленной записью
                 } else {
-                    alert("Ошибка: " + data);
+                    alert("Ошибка: " + data.error);
                 }
             })
             .catch(error => console.error('Ошибка:', error));
@@ -90,87 +87,40 @@ document.addEventListener("DOMContentLoaded", function() {
         saveAs(new Blob([s2ab(wbout)], {type: "application/octet-stream"}), "table.xlsx");
     });
 
-
-    // Назначаем обработчики события "click" для кнопок редактирования
-/*     document.querySelectorAll(".edit-btn").forEach(function(button) {
-        button.addEventListener("click", function() {
-            var id = this.getAttribute("data-id"); // Получаем ID записи для редактирования
-    
-            // Получаем данные записи по ее ID и заполняем форму редактирования
-            fetch('data.php?id=' + id)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);
-                // Установим значения полей формы на основе данных, полученных с сервера
-                document.getElementById("editId").value = id;
-                document.getElementById("editImie").value = data.imie || '';
-                document.getElementById("editNazwisko").value = data.nazwisko || '';
-                document.getElementById("editPrzyjazd").value = data.przyjazd || '';
-                document.getElementById("editOdjazd").value = data.odjazd || '';
-                document.getElementById("editAdres").value = data.adres || '';
-                document.getElementById("editZaklad").value = data.zaklad || '';
-                document.getElementById("editSpolka").value = data.spolka || '';
-                document.getElementById("editAdministrator").value = data.administrator || '';
-    
-                // Отображаем форму редактирования
-                document.getElementById("editForm").style.display = "block";
-            })
-            .catch(error => {
-                console.error('Ошибка:', error.message);
-                if (error.hasOwnProperty('responseText')) {
-                    console.error('Текст ответа сервера:', error.responseText);
-                } else {
-                    console.error('Не удалось получить ответ от сервера.');
-                }
-            });
-        });
-    }); */
-    
+    // Назначаем обработчики события "click" для кнопок EDIT
     document.querySelectorAll(".edit-btn").forEach(function(button) {
         button.addEventListener("click", function() {
             var id = this.getAttribute("data-id"); // Получаем ID записи для редактирования
     
             // Получаем данные записи по ее ID и заполняем форму редактирования
-            fetch('data.php?id=' + id)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
+            fetch('get_data.php?id=' + id)
+            .then(response => response.json())
             .then(data => {
-                console.log(data); // Посмотрим, что приходит с сервера
-                // Установим значения полей формы на основе данных, полученных с сервера
-                document.getElementById("editId").value = id;
-                document.getElementById("editImie").value = data.imie || '';
-                document.getElementById("editNazwisko").value = data.nazwisko || '';
-                document.getElementById("editPrzyjazd").value = data.przyjazd || '';
-                document.getElementById("editOdjazd").value = data.odjazd || '';
-                document.getElementById("editAdres").value = data.adres || '';
-                document.getElementById("editZaklad").value = data.zaklad || '';
-                document.getElementById("editSpolka").value = data.spolka || '';
-                document.getElementById("editAdministrator").value = data.administrator || '';
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    document.getElementById("editId").value = id;
+                    document.getElementById("editImie").value = data.imie || '';
+                    document.getElementById("editNazwisko").value = data.nazwisko || '';
+                    document.getElementById("editPrzyjazd").value = data.przyjazd || '';
+                    document.getElementById("editOdjazd").value = data.odjazd || '';
+                    document.getElementById("editAdres").value = data.adres || '';
+                    document.getElementById("editZaklad").value = data.zaklad || '';
+                    document.getElementById("editSpolka").value = data.spolka || '';
+                    document.getElementById("editAdministrator").value = data.administrator || '';
     
-                // Отображаем форму редактирования
-                document.getElementById("editForm").style.display = "block";
+                    // Отображаем форму редактирования
+                    document.getElementById("editForm").style.display = "block";
+                }
             })
             .catch(error => {
-                console.error('Ошибка:', error.message);
-                if (error.hasOwnProperty('responseText')) {
-                    console.error('Текст ответа сервера:', error.responseText);
-                } else {
-                    console.error('Не удалось получить ответ от сервера.');
-                }
+                console.error('Ошибка:', error);
+                alert('Не удалось получить данные для редактирования.');
             });
         });
     });
 
-    // Назначаем обработчик события "submit" для формы редактирования
+    // Назначаем обработчик события "submit" для формы EDIT
     document.getElementById("editDataForm").addEventListener("submit", function(event) {
         event.preventDefault(); // Предотвращаем стандартную отправку формы
         var formData = new FormData(this);
@@ -179,35 +129,20 @@ document.addEventListener("DOMContentLoaded", function() {
             method: 'POST',
             body: formData
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json(); // Ожидаем JSON-ответ от сервера
-        })
+        .then(response => response.json())
         .then(data => {
-            console.log(data);
-            if (data.hasOwnProperty("imie")) { // Проверяем наличие поля "imie" в ответе
-                // Устанавливаем значения для полей формы
-                document.getElementById("editId").value = data.id;
-                document.getElementById("editImie").value = data.imie;
-                document.getElementById("editNazwisko").value = data.nazwisko;
-                document.getElementById("editPrzyjazd").value = data.przyjazd;
-                document.getElementById("editOdjazd").value = data.odjazd;
-                document.getElementById("editAdres").value = data.adres;
-                document.getElementById("editZaklad").value = data.zaklad;
-                document.getElementById("editSpolka").value = data.spolka;
-                document.getElementById("editAdministrator").value = data.administrator;
-        
-                // Отображаем форму редактирования
-                document.getElementById("editForm").style.display = "block";
-            } else if (data.hasOwnProperty("error")) { // Проверяем наличие ошибки в ответе
-                alert("Error: " + data.error);
+            if (data.message) {
+                window.location.reload(); // Перезагружаем страницу после успешного обновления
             } else {
-                throw new Error('Unexpected server response'); // Если ответ не содержит ни сообщения, ни ошибки, генерируем исключение
+                alert("Error: " + data.error);
             }
         })
         .catch(error => console.error('Ошибка:', error));
     });
-            
+
+    // Обработка отмены редактирования
+    document.getElementById("cancelEdit").addEventListener("click", function(event) {
+        event.preventDefault();
+        document.getElementById("editForm").style.display = "none";
+    });
 });

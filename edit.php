@@ -1,19 +1,34 @@
-<!-- <?php
-// Проверяем, был ли отправлен запрос методом POST
+<?php
+require_once("db.php");
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Здесь вы можете получить данные из формы, отправленной методом POST
-    // Например, получим данные из поля с именем "editId"
-    $editId = $_POST["editId"];
+    $id = intval($_POST['id']);
+    $imie = isset($_POST['imie']) ? $_POST['imie'] : '';
+    $nazwisko = isset($_POST['nazwisko']) ? $_POST['nazwisko'] : '';
+    $przyjazd = isset($_POST['przyjazd']) ? $_POST['przyjazd'] : '';
+    $odjazd = isset($_POST['odjazd']) ? $_POST['odjazd'] : '';
+    $adres = isset($_POST['adres']) ? $_POST['adres'] : '';
+    $zaklad = isset($_POST['zaklad']) ? $_POST['zaklad'] : '';
+    $spolka = isset($_POST['spolka']) ? $_POST['spolka'] : '';
+    $administrator = isset($_POST['administrator']) ? $_POST['administrator'] : '';
 
-    // Здесь вы можете выполнить необходимые операции для редактирования данных
-    // Например, обновить данные в базе данных
+    $sql = "UPDATE `work` SET 
+                imie = '$imie', 
+                nazwisko = '$nazwisko', 
+                przyjazd = '$przyjazd', 
+                odjazd = '$odjazd', 
+                adres = '$adres', 
+                zaklad = '$zaklad', 
+                spolka = '$spolka', 
+                administrator = '$administrator' 
+            WHERE id = $id";
 
-    // После выполнения операций возвращаем сообщение об успешном обновлении данных
-    header('Content-Type: application/json'); // Установка заголовка для указания на тип содержимого
-    echo json_encode(["message" => "Data updated successfully."]);
+    if (mysqli_query($conn, $sql)) {
+        echo json_encode(["message" => "Data updated successfully."]);
+    } else {
+        echo json_encode(["error" => "Error: " . $sql . "<br>" . mysqli_error($conn)]);
+    }
 } else {
-    // Если запрос не был отправлен методом POST, возвращаем сообщение об ошибке
-    header('Content-Type: application/json'); // Установка заголовка для указания на тип содержимого
     echo json_encode(["error" => "Invalid request method."]);
 }
-?> -->
+?>
