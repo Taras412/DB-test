@@ -2,39 +2,68 @@
 .container {
     margin: 0 auto;
     width: 90%;
+    
 }
-.wrapper {
+
+.wrapper-main {
+    max-width: 1200px;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
+    border: 2px solid #000;
 }
-.form {
+
+.wrapper {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+}
+
+.form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
 }
-.form__text, .form__data {
-    padding: 10px;
-    width: 300px;
+
+.form__text,
+.form__data,
+.form__select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 4px;
+    font-size: 14px;
 }
-.form__data {
-    width: 140px;
+
+button[type="submit"] {
+    width: 200px;
+    margin: 20px auto;
+    padding: 10px 20px; /* Отступы вокруг текста в кнопке */
+    font-size: 16px; /* Размер шрифта в кнопке */
+    border: none; /* Убираем границу у кнопки */
+    background-color: #007bff; /* Цвет фона кнопки */
+    color: #fff; /* Цвет текста на кнопке */
+    cursor: pointer; /* Изменяем курсор при наведении на кнопку */
+    border-radius: 4px; /* Скругление углов кнопки */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+
 button {
     padding: 20px 40px;
     margin-top: 10px;
     background-color: #9e8beb;
-    color: #fff;
+    color: #fff;display: grid;
+    gap: 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
+    justify-content: center;
+    align-items: center;
 }
 button:hover {
     background-color: #0056b3;
@@ -114,9 +143,28 @@ button:hover {
 }
 
 .modal {
-    display: none;
+    /* display: none; */
+    position: relative;
+    padding: 20px;
+    border: 1px solid #000;
+    width: 90%;
+    margin: 0 auto;
 }
-
+.modal-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.close {
+    margin-left: auto;
+    font-size: 30px; 
+    font-weight: bold; 
+    color: #000; 
+    cursor: pointer;
+    position: absolute; 
+    top: 10px; 
+    right: 10px;
+}
 /* width/height butto EDIT */
 button {
     padding: 8px 12px;
