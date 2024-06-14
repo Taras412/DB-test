@@ -10,8 +10,8 @@
     <div class="container wrapper-main">
         <div class="wrapper">
             <form id="dataForm" class="form" action="data.php" method="POST">
-                <input class="form__text" type="text" placeholder="imię" name="imie">
-                <input class="form__text" type="text" placeholder="nazwisko" name="nazwisko">
+                <input class="form__text" type="text" placeholder="imię" name="imie" required>
+                <input class="form__text" type="text" placeholder="nazwisko" name="nazwisko" required>
                 <input class="form__data" type="date" placeholder="przyjazd" name="przyjazd" required>
                 <input class="form__data" type="date" placeholder="odjazd" name="odjazd">
                 <input class="form__text" type="text" placeholder="adres" name="adres">
