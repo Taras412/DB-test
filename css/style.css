@@ -1,4 +1,8 @@
 /* Общие стили */
+body {
+    position: relative;
+}
+
 .container {
     margin: 0 auto;
     width: 90%;
@@ -8,7 +12,7 @@
 .wrapper-main {
     max-width: 1200px;
     margin: 0 auto;
-    border: 2px solid #000;
+    /* border: 2px solid #000; */
 }
 
 .wrapper {
@@ -21,7 +25,7 @@
 
 .form {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 10px;
 }
 
@@ -38,7 +42,6 @@
 
 button[type="submit"] {
     width: 200px;
-    margin: 20px auto;
     padding: 10px 20px; /* Отступы вокруг текста в кнопке */
     font-size: 16px; /* Размер шрифта в кнопке */
     border: none; /* Убираем границу у кнопки */
@@ -54,7 +57,6 @@ button[type="submit"] {
 
 button {
     padding: 20px 40px;
-    margin-top: 10px;
     background-color: #9e8beb;
     color: #fff;display: grid;
     gap: 20px;
@@ -135,7 +137,7 @@ button:hover {
 #tableSelector {
     font-size: 18px;
     font-weight: 700;
-    padding-bottom: 10px;
+    padding: 10px 20px;
 }
 
 .filter-input {
@@ -146,10 +148,11 @@ button:hover {
     /* display: none; */
     position: relative;
     padding: 20px;
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
     width: 90%;
     margin: 0 auto;
 }
+
 .modal-content {
     display: flex;
     justify-content: space-around;
@@ -169,10 +172,71 @@ button:hover {
 button {
     padding: 8px 12px;
 }
-
+.excel-btn {
+    margin-top: 10px;
+}
 /* Устанавливаем ширину колонки с кнопкой EDIT */
 .table__action {
     width: 80px;
     vertical-align: middle;
 }
+.modal_form__wrapper {
+    position: relative;
+}
+.modal_form {
+    background-color: #dbd4d4;
+    display: none;
+    margin: 0 auto;
+    width: 800px;
+    padding: 10px 40px;
+    border: 1px solid #000;
+    position: absolute;
+    z-index: 100;
+    left: 50%;
+    top: 140px;
+    transform: translateX(-50%);
+}
 
+.modal_close {
+    position: absolute;
+    font-size: 30px; 
+    font-weight: bold; 
+    color: #000; 
+    cursor: pointer;
+    top: 10px; 
+    right: 10px;
+}
+.modal_button {
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+    grid-column: 3; 
+    text-align: center;
+}
+.form_button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.form_button select,
+.form_button button {
+    padding-bottom: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    background-color: #9e8beb;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form_button select {
+    margin-right: 10px; /* Добавляем отступ справа между элементами */
+    width: auto; /* Ширина по содержимому */
+}
+
+.form_button button {
+    padding: 10px 20px; /* Увеличиваем горизонтальные отступы */
+}

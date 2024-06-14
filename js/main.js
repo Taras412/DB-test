@@ -158,3 +158,23 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("editForm").style.display = "none";
     });
 });
+
+//MODAL_FORM OPEN
+$(document).ready(function() {
+    // Обработчик клика на кнопку "ADD Worker"
+    $('.form_button button').click(function() {
+        $('#modal_form').css('display', 'block');
+    });
+});
+//MODAL FORM CLOSE
+$(document).ready(function() {
+    // Открытие модального окна при клике на кнопку "ADD Worker"
+    $('.form_button button').click(function() {
+        $('#modal_form').css('display', 'block');
+    });
+
+    // Закрытие модального окна при клике на элемент с классом .modal_close
+    $('.modal_close').click(function() {
+        $('#modal_form').css('display', 'none');
+    });
+});

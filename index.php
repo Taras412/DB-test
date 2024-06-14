@@ -4,79 +4,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Base test</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="container wrapper-main">
-        <div class="wrapper">
-            <form id="dataForm" class="form" action="data.php" method="POST">
-                <input class="form__text" type="text" placeholder="imię" name="imie" required>
-                <input class="form__text" type="text" placeholder="nazwisko" name="nazwisko" required>
-                <input class="form__data" type="date" placeholder="przyjazd" name="przyjazd" required>
-                <input class="form__data" type="date" placeholder="odjazd" name="odjazd">
-                <input class="form__text" type="text" placeholder="adres" name="adres">
-                <input class="form__text" type="text" placeholder="zaklad" name="zaklad">
-                <select class="form__select" placeholder="Spolka" name="spolka">
-                    <option value="" disabled selected hidden>spolka</option>
-                    <option value="APT">APT</option>
-                    <option value="WP">WP</option>
-                    <option value="SAS">SAS</option>
-                    <option value="WD">WD</option>
-                    <option value="DIPICO">DIPICO</option>
-                </select>
-                <input class="form__text" type="text" placeholder="Administrator" name="administrator">
-                <input class="form__text" type="text" placeholder="Narodowosc:" name="narodowosc">
-                <input class="form__data" type="date" placeholder="Data urodzenia" name="data-urodzenia">
-                <input class="form__text" type="text" placeholder="Wiek" name="wiek">
-                <input class="form__text" type="text" placeholder="Numer Paszportu" name="numer-paszportu">
-                <input class="form__text" type="text" placeholder="Numer PESEL" name="numer-pesel">
-                <input class="form__text" type="tel" pattern="[0-9]{3} [0-9]{3} [0-9]{3}" placeholder="XXX XXX XXX" name="telefon">
-                <select class="form__select" placeholder="Student" name="student">
-                    <option value="" disabled selected hidden>Student</option>
-                    <option value="APT">TAK</option>
-                    <option value="WP">NIE</option>
-                </select>
-                <input class="form__data" type="date" placeholder="Legitymacja do:" name="legitymacja">
-                <input class="form__text" type="text" placeholder="Stanowisko" name="stanowisko">
-                <input class="form__data" type="date" placeholder="Badanie lekarskie" name="badanie">
-                <input class="form__data" type="date" placeholder="BHP" name="bhp">
-                <input class="form__data" type="date" placeholder="Data zgloszenie wyjazdu" name="zgloszenie-wyjazdu">
-                <select class="form__select" placeholder="Zezwolenie/Oswiadczenie" name="zezwol-oswiad">
-                    <option value="" disabled selected hidden>Zezwol/Oswiad</option>
-                    <option value="APT">ZEZWOLENIE</option>
-                    <option value="WP">OSWIADCZENIE</option>
-                </select>
-                <input class="form__data" type="date" placeholder="Ważność dokumentu (zezw, osw)" name="waznosc-zezw">
-                <select class="form__select" placeholder="Wisa/Bio" name="wiza-bio">
-                    <option value="" disabled selected hidden>Wiza/Bio</option>
-                    <option value="APT">WIZA</option>
-                    <option value="WP">BIO</option>
-                </select>
-                <input class="form__data" type="date" placeholder="Ważność dokumentu (wiza, bio)" name="waznosc-wisa">
-                <select class="form__select" placeholder="Karta Pobytu" name="karta-pobytu">
-                    <option value="" disabled selected hidden>Karta Pobytu</option>
-                    <option value="APT">TAK</option>
-                    <option value="WP">NIE</option>
-                </select>
-                <input class="form__data" type="date" placeholder="Ważność dokumentu (Karta Pobytu)" name="waznosc-karta">
-                <input class="form__text" type="text" placeholder="Status Karty Pobytu" name="status-karta">
-                <input class="form__text" type="text" placeholder="Uwagi" name="uwagi">
-                <input class="form__text" type="text" placeholder="Komentarz" name="komentarz">
-                <input class="form__text" type="text" placeholder="Dodatkowa Informacja" name="info">
-                <div>
-                    <button type="submit">ZAPISZ</button>
+    <div class="modal_form__wrapper">
+        <div id="modal_form" class="modal_form">
+            <span class="modal_close">&times;</span>
+                <div class="wrapper">
+                    <form id="dataForm" class="form" action="data.php" method="POST">
+                        <input class="form__text" type="text" placeholder="imię" name="imie" required>
+                        <input class="form__text" type="text" placeholder="nazwisko" name="nazwisko" required>
+                        <input class="form__data" type="date" placeholder="przyjazd" name="przyjazd" required>
+                        <input class="form__data" type="date" placeholder="odjazd" name="odjazd">
+                        <input class="form__text" type="text" placeholder="adres" name="adres">
+                        <input class="form__text" type="text" placeholder="zaklad" name="zaklad">
+                        <select class="form__select" placeholder="Spolka" name="spolka">
+                            <option value="" disabled selected hidden>spolka</option>
+                            <option value="APT">APT</option>
+                            <option value="WP">WP</option>
+                            <option value="SAS">SAS</option>
+                            <option value="WD">WD</option>
+                            <option value="DIPICO">DIPICO</option>
+                        </select>
+                        <input class="form__text" type="text" placeholder="Administrator" name="administrator">
+                        <input class="form__text" type="text" placeholder="Narodowosc:" name="narodowosc">
+                        <input class="form__data" type="date" placeholder="Data urodzenia" name="data-urodzenia">
+                        <input class="form__text" type="text" placeholder="Wiek" name="wiek">
+                        <input class="form__text" type="text" placeholder="Numer Paszportu" name="numer-paszportu">
+                        <input class="form__text" type="text" placeholder="Numer PESEL" name="numer-pesel">
+                        <input class="form__text" type="tel" pattern="[0-9]{3} [0-9]{3} [0-9]{3}" placeholder="XXX XXX XXX" name="telefon">
+                        <select class="form__select" placeholder="Student" name="student">
+                            <option value="" disabled selected hidden>Student</option>
+                            <option value="APT">TAK</option>
+                            <option value="WP">NIE</option>
+                        </select>
+                        <input class="form__data" type="date" placeholder="Legitymacja do:" name="legitymacja">
+                        <input class="form__text" type="text" placeholder="Stanowisko" name="stanowisko">
+                        <input class="form__data" type="date" placeholder="Badanie lekarskie" name="badanie">
+                        <input class="form__data" type="date" placeholder="BHP" name="bhp">
+                        <input class="form__data" type="date" placeholder="Data zgloszenie wyjazdu" name="zgloszenie-wyjazdu">
+                        <select class="form__select" placeholder="Zezwolenie/Oswiadczenie" name="zezwol-oswiad">
+                            <option value="" disabled selected hidden>Zezwol/Oswiad</option>
+                            <option value="APT">ZEZWOLENIE</option>
+                            <option value="WP">OSWIADCZENIE</option>
+                        </select>
+                        <input class="form__data" type="date" placeholder="Ważność dokumentu (zezw, osw)" name="waznosc-zezw">
+                        <select class="form__select" placeholder="Wisa/Bio" name="wiza-bio">
+                            <option value="" disabled selected hidden>Wiza/Bio</option>
+                            <option value="APT">WIZA</option>
+                            <option value="WP">BIO</option>
+                        </select>
+                        <input class="form__data" type="date" placeholder="Ważność dokumentu (wiza, bio)" name="waznosc-wisa">
+                        <select class="form__select" placeholder="Karta Pobytu" name="karta-pobytu">
+                            <option value="" disabled selected hidden>Karta Pobytu</option>
+                            <option value="APT">TAK</option>
+                            <option value="WP">NIE</option>
+                        </select>
+                        <input class="form__data" type="date" placeholder="Ważność dokumentu (Karta Pobytu)" name="waznosc-karta">
+                        <input class="form__text" type="text" placeholder="Status Karty Pobytu" name="status-karta">
+                        <input class="form__text" type="text" placeholder="Uwagi" name="uwagi">
+                        <input class="form__text" type="text" placeholder="Komentarz" name="komentarz">
+                        <input class="form__text" type="text" placeholder="Dodatkowa Informacja" name="info">
+                        <div class= modal_button>
+                            <button type="submit">ZAPISZ</button>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
+        </div>
+    </div>    
+    <div class="container">
+        <div class="form_button">
+            <select id="tableSelector">
+                <option value="table1">List of Workers</option>
+                <option value="table2">List of Dissmissed</option>
+            </select>
+            <button class="form_btn" type="submit">ADD Worker</button>
         </div>
     </div>
-        
-    <div class="container">
-        <select id="tableSelector">
-            <option value="table1">List of Workers</option>
-            <option value="table2">List of Dissmissed</option>
-        </select>
-    </div>
     
+
     <div class="container">
         <div id="table1" class="table-container">
             <table class="worker-table">
@@ -199,10 +207,10 @@
 
 
     <div class="container">
-        <button id="exportButton">SAVE TO EXCEL</button>
+        <button class="excel-btn" id="exportButton">SAVE TO EXCEL</button>
     </div>
 
-
+    <!-- MODAL WINDOW INFO -->
     <div class="container">
         <div id="modal" class="modal">
             <span class="close">&times;</span>
